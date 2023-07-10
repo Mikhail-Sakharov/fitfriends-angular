@@ -1,0 +1,25 @@
+<main>
+  <div class="intro">
+    <div class="intro__background">
+      <picture>
+        <img src="img/content/sitemap/background.jpg" width="1440" height="1024" alt="Фон с бегущей девушкой">
+      </picture>
+    </div>
+    <div class="intro__wrapper">
+      <svg class="intro__icon" width="60" height="60" aria-hidden="true">
+        <use xlink:href="#icon-logotype"></use>
+      </svg>
+      <div class="intro__title-logo">
+        <picture>
+          <img src="img/content/sitemap/title-logo.png" width="934" height="455" alt="Логотип Fit Friends">
+        </picture>
+      </div>
+      <div class="intro__buttons">
+        <button class="btn intro__button" type="button" [routerLink]="signUpRoute">Регистрация</button>
+        <p class="intro__text">
+          Есть аккаунт? <a [routerLink]="signInRoute" class="intro__link" href="#">Вход</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
