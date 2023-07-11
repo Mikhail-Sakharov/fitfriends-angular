@@ -7,6 +7,7 @@ import {SignUpComponent} from './pages/sign-up/sign-up.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {SignInComponent} from './pages/sign-in/sign-in.component';
 import {SignUpQuestionnaireCoachComponent} from './pages/sign-up-questionnaire-coach/sign-up-questionnaire-coach.component';
+import { SignUpQuestionnaireUserComponent } from './pages/sign-up-questionnaire-user/sign-up-questionnaire-user.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {SignUpQuestionnaireCoachComponent} from './pages/sign-up-questionnaire-c
     SignUpComponent,
     NotFoundComponent,
     SignInComponent,
-    SignUpQuestionnaireCoachComponent
+    SignUpQuestionnaireCoachComponent,
+    SignUpQuestionnaireUserComponent
   ],
   imports: [
     BrowserModule,
