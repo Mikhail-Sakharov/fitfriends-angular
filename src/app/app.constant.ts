@@ -30,3 +30,8 @@ export enum CustomSelectClassName {
   Opened = 'is-open',
   NotEmpty = 'not-empty'
 }
+
+export const UserRoleDependentRedirectionRouteMap = {
+  [UserRole.User]: `/${AppRoute.SignUpUser}`,
+  [UserRole.Coach]: `/${AppRoute.SignUpCoach}`
+}

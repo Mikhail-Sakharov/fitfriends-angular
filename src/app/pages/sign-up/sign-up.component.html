@@ -138,6 +138,7 @@
                     <label>
                       <input
                         (change)="handleUserRoleInputChange($event)"
+                        [checked]="isUserRoleCoach"
                         class="visually-hidden" type="radio" name="role" value="Coach"
                       >
                       <span class="role-btn__icon">
@@ -152,6 +153,7 @@
                     <label>
                       <input
                         (change)="handleUserRoleInputChange($event)"
+                        [checked]="isUserRoleUser"
                         class="visually-hidden" type="radio" name="role" value="User"
                       >
                       <span class="role-btn__icon">
@@ -178,7 +180,7 @@
                 </label>
               </div>
               <button
-                routerLink="/coach"
+                [routerLink]="userRoleDependentRedirectionRoute"
                 class="btn sign-up__button"
                 type="submit"
               >

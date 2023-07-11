@@ -1,5 +1,12 @@
 import {Component} from '@angular/core';
-import {CustomSelectClassName, Gender, Location, UserRole} from 'src/app/app.constant';
+import {
+  AppRoute,
+  CustomSelectClassName,
+  Gender,
+  Location,
+  UserRole,
+  UserRoleDependentRedirectionRouteMap
+} from 'src/app/app.constant';
 import {SignUpStateService} from 'src/app/services/sign-up-state.service';
 
 @Component({
@@ -11,6 +18,7 @@ export class SignUpComponent {
   public avatarUrl: string | null = null;
   public isAvatarSelected = false;
   public isCustomSelectOpened = false;
+  public genderList = Object.values(Gender);
 
   public locations = Object.values(Location);
   public selectedLocation: Location | null = null;
@@ -19,7 +27,12 @@ export class SignUpComponent {
     [CustomSelectClassName.NotEmpty]: false
   };
 
-  public genderList = Object.values(Gender);
+  public userRole: UserRole | null = this.signUpStateService.userRole;
+  public isUserRoleUser = this.userRole === UserRole.User;
+  public isUserRoleCoach = this.userRole === UserRole.Coach;
+  public userRoleDependentRedirectionRoute = this.userRole !== null
+    ? UserRoleDependentRedirectionRouteMap[this.userRole]
+    : AppRoute.SignUp;
 
   constructor(
     private signUpStateService: SignUpStateService
@@ -73,6 +86,7 @@ export class SignUpComponent {
 
     const userRole = UserRole[value as keyof typeof UserRole];
     this.signUpStateService.userRole = userRole;
+    this.userRoleDependentRedirectionRoute = UserRoleDependentRedirectionRouteMap[userRole];
   }
 
   public handleOpenCustomSelectButtonClick = () => {
