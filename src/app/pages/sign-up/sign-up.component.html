@@ -168,7 +168,10 @@
               </div>
               <div class="sign-up__checkbox">
                 <label>
-                  <input type="checkbox" value="user-agreement" name="user-agreement" checked>
+                  <input
+                    (change)="handleUserAgreementInputChange()"
+                    type="checkbox" value="user-agreement" name="user-agreement" checked
+                  >
                   <span class="sign-up__checkbox-icon">
                     <svg width="9" height="6" aria-hidden="true">
                       <use xlink:href="#arrow-check"></use>
@@ -180,7 +183,9 @@
                 </label>
               </div>
               <button
+                (click)="handleProceedButtonClick($event)"
                 [routerLink]="userRoleDependentRedirectionRoute"
+                [disabled]="!isUserAgreementInputChecked"
                 class="btn sign-up__button"
                 type="submit"
               >

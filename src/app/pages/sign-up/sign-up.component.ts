@@ -32,7 +32,9 @@ export class SignUpComponent {
   public isUserRoleCoach = this.userRole === UserRole.Coach;
   public userRoleDependentRedirectionRoute = this.userRole !== null
     ? UserRoleDependentRedirectionRouteMap[this.userRole]
-    : AppRoute.SignUp;
+    : `/${AppRoute.SignUp}`;
+
+  public isUserAgreementInputChecked = true;
 
   constructor(
     private signUpStateService: SignUpStateService
@@ -102,5 +104,13 @@ export class SignUpComponent {
     this.selectedLocation = location;
     this.signUpStateService.location = location;
     this.isCustomSelectOpened = false;
+  }
+
+  public handleUserAgreementInputChange() {
+    this.isUserAgreementInputChecked = !this.isUserAgreementInputChecked;
+  }
+
+  public handleProceedButtonClick(evt: Event) {
+    evt.preventDefault();
   }
 }
