@@ -5,13 +5,16 @@ import {SignUpComponent} from './pages/sign-up/sign-up.component';
 import {AppRoute} from './app.constant';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {SignInComponent} from './pages/sign-in/sign-in.component';
+import {SignUpQuestionnaireCoachComponent} from './pages/sign-up-questionnaire-coach/sign-up-questionnaire-coach.component';
 
 const routes: Routes = [
   {path: '', redirectTo: AppRoute.Intro, pathMatch: 'full'},
   {path: AppRoute.Intro, component: IntroComponent},
   {path: AppRoute.SignUp, component: SignUpComponent},
+  {path: AppRoute.SignUpCoach, component: SignUpQuestionnaireCoachComponent},
+  // {path: AppRoute.SignUpUser, component: SignUpQuestionnaireUserComponent},
   {path: AppRoute.SignIn, component: SignInComponent},
-  {path: '**', component: NotFoundComponent}
+  {path: AppRoute.NotFound, component: NotFoundComponent}
 ];
 
 @NgModule({

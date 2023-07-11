@@ -18,14 +18,26 @@
             <div class="sign-up">
               <div class="sign-up__load-photo">
                 <div class="input-load-avatar">
-                  <label>
-                    <input class="visually-hidden" type="file" accept="image/png, image/jpeg">
-                    <span class="input-load-avatar__btn">
-                      <svg width="20" height="20" aria-hidden="true">
-                        <use xlink:href="#icon-import"></use>
-                      </svg>
-                    </span>
-                  </label>
+                  <div
+                    *ngIf="isAvatarSelected; else avatarFileInput"
+                    class="input-load-avatar__avatar"
+                  >
+                    <img [src]="avatarUrl" alt="user avatar">
+                  </div>
+                  <ng-template #avatarFileInput>
+                    <label>
+                      <input
+                        (change)="handleFileInputChange($event)"
+                        class="visually-hidden" type="file"
+                        accept="image/png, image/jpeg"
+                      >
+                      <span class="input-load-avatar__btn">
+                        <svg width="20" height="20" aria-hidden="true">
+                          <use xlink:href="#icon-import"></use>
+                        </svg>
+                      </span>
+                    </label>
+                  </ng-template>
                 </div>
                 <div class="sign-up__description">
                   <h2 class="sign-up__legend">Загрузите фото профиля</h2>
@@ -37,7 +49,7 @@
                   <label>
                     <span class="custom-input__label">Имя</span>
                     <span class="custom-input__wrapper">
-                      <input type="text" name="name">
+                      <input (change)="handleUserNameInputChange($event)" type="text" name="name">
                     </span>
                   </label>
                 </div>
@@ -45,7 +57,7 @@
                   <label>
                     <span class="custom-input__label">E-mail</span>
                     <span class="custom-input__wrapper">
-                      <input type="email" name="email">
+                      <input (change)="handleEmailInputChange($event)" type="email" name="email">
                     </span>
                   </label>
                 </div>
@@ -53,53 +65,67 @@
                   <label>
                     <span class="custom-input__label">Дата рождения</span>
                     <span class="custom-input__wrapper">
-                      <input type="date" name="birthday" max="2099-12-31">
+                      <input (change)="handleBirthDateInputChange($event)" type="date" name="birthday" max="2099-12-31">
                     </span>
                   </label>
                 </div>
-                <div class="custom-select custom-select--not-selected">
+                <div
+                  class="custom-select"
+                  [ngClass]="locationSelectClasses"
+                >
                   <span class="custom-select__label">Ваша локация</span>
-                  <button class="custom-select__button" type="button" aria-label="Выберите одну из опций">
-                    <span class="custom-select__text"></span>
+                  <button
+                    (click)="handleOpenCustomSelectButtonClick()"
+                    class="custom-select__button" type="button" aria-label="Выберите одну из опций"
+                  >
+                    <span class="custom-select__text">
+                      {{selectedLocation}}
+                    </span>
                     <span class="custom-select__icon">
                       <svg width="15" height="6" aria-hidden="true">
                         <use xlink:href="#arrow-down"></use>
                       </svg>
                     </span>
                   </button>
-                  <ul class="custom-select__list" role="listbox">
+                  <ul
+                    class="custom-select__list" role="listbox"
+                  >
+                    <li
+                      *ngFor="let location of locations"
+                      class="custom-select__item"
+                      (click)="handleLocationSelectItemClick(location)"
+                    >
+                      {{location}}
+                    </li>
                   </ul>
                 </div>
                 <div class="custom-input">
                   <label>
                     <span class="custom-input__label">Пароль</span>
                     <span class="custom-input__wrapper">
-                      <input type="password" name="password" autocomplete="off">
+                      <input
+                        (change)="handlePasswordInputChange($event)"
+                        type="password" name="password" autocomplete="off"
+                      >
                     </span>
                   </label>
                 </div>
                 <div class="sign-up__radio">
                   <span class="sign-up__label">Пол</span>
                   <div class="custom-toggle-radio custom-toggle-radio--big">
-                    <div class="custom-toggle-radio__block">
+                    <div
+                      *ngFor="let gender of genderList"
+                      class="custom-toggle-radio__block"
+                    >
                       <label>
-                        <input type="radio" name="sex">
+                        <input
+                          (change)="handleGenderInputChange(gender)"
+                          type="radio" name="sex"
+                        >
                         <span class="custom-toggle-radio__icon"></span>
-                        <span class="custom-toggle-radio__label">Мужской</span>
-                      </label>
-                    </div>
-                    <div class="custom-toggle-radio__block">
-                      <label>
-                        <input type="radio" name="sex" checked>
-                        <span class="custom-toggle-radio__icon"></span>
-                        <span class="custom-toggle-radio__label">Женский</span>
-                      </label>
-                    </div>
-                    <div class="custom-toggle-radio__block">
-                      <label>
-                        <input type="radio" name="sex">
-                        <span class="custom-toggle-radio__icon"></span>
-                        <span class="custom-toggle-radio__label">Неважно</span>
+                        <span class="custom-toggle-radio__label">
+                          {{gender}}
+                        </span>
                       </label>
                     </div>
                   </div>
@@ -110,7 +136,10 @@
                 <div class="role-selector sign-up__role-selector">
                   <div class="role-btn">
                     <label>
-                      <input class="visually-hidden" type="radio" name="role" value="coach" checked="checked">
+                      <input
+                        (change)="handleUserRoleInputChange($event)"
+                        class="visually-hidden" type="radio" name="role" value="Coach"
+                      >
                       <span class="role-btn__icon">
                         <svg width="12" height="13" aria-hidden="true">
                           <use xlink:href="#icon-cup"></use>
@@ -121,7 +150,10 @@
                   </div>
                   <div class="role-btn">
                     <label>
-                      <input class="visually-hidden" type="radio" name="role" value="sportsman">
+                      <input
+                        (change)="handleUserRoleInputChange($event)"
+                        class="visually-hidden" type="radio" name="role" value="User"
+                      >
                       <span class="role-btn__icon">
                         <svg width="12" height="13" aria-hidden="true">
                           <use xlink:href="#icon-weight"></use>
@@ -145,7 +177,13 @@
                   </span>
                 </label>
               </div>
-              <button class="btn sign-up__button" type="submit">Продолжить</button>
+              <button
+                routerLink="/coach"
+                class="btn sign-up__button"
+                type="submit"
+              >
+                Продолжить
+              </button>
             </div>
           </form>
         </div>

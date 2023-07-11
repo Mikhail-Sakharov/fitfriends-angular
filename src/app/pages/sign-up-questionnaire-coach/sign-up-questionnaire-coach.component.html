@@ -1,0 +1,143 @@
+<main>
+  <div class="background-logo">
+    <svg class="background-logo__logo" width="750" height="284" aria-hidden="true">
+      <use xlink:href="#logo-big"></use>
+    </svg>
+    <svg class="background-logo__icon" width="343" height="343" aria-hidden="true">
+      <use xlink:href="#icon-logotype"></use>
+    </svg>
+  </div>
+  <div class="popup-form popup-form--questionnaire-coach">
+    <div class="popup-form__wrapper">
+      <div class="popup-form__content">
+        <div class="popup-form__form">
+          <form method="get">
+            <div class="questionnaire-coach">
+              <h1 class="visually-hidden">Опросник</h1>
+              <div class="questionnaire-coach__wrapper">
+                <div class="questionnaire-coach__block">
+                  <span class="questionnaire-coach__legend">Ваша специализация (тип) тренировок</span>
+                  <div class="specialization-checkbox questionnaire-coach__specializations">
+                    <div class="btn-checkbox">
+                      <label>
+                        <input class="visually-hidden" type="checkbox" name="specialisation" value="yoga">
+                        <span class="btn-checkbox__btn">Йога</span>
+                      </label>
+                    </div>
+                    <div class="btn-checkbox">
+                      <label>
+                        <input class="visually-hidden" type="checkbox" name="specialisation" value="running">
+                        <span class="btn-checkbox__btn">Бег</span>
+                      </label>
+                    </div>
+                    <div class="btn-checkbox">
+                      <label>
+                        <input class="visually-hidden" type="checkbox" name="specialisation" value="power" checked="checked">
+                        <span class="btn-checkbox__btn">Силовые</span>
+                      </label>
+                    </div>
+                    <div class="btn-checkbox">
+                      <label>
+                        <input class="visually-hidden" type="checkbox" name="specialisation" value="aerobics">
+                        <span class="btn-checkbox__btn">Аэробика</span>
+                      </label>
+                    </div>
+                    <div class="btn-checkbox">
+                      <label>
+                        <input class="visually-hidden" type="checkbox" name="specialisation" value="crossfit" checked="checked">
+                        <span class="btn-checkbox__btn">Кроссфит</span>
+                      </label>
+                    </div>
+                    <div class="btn-checkbox">
+                      <label>
+                        <input class="visually-hidden" type="checkbox" name="specialisation" value="boxing" checked="checked">
+                        <span class="btn-checkbox__btn">Бокс</span>
+                      </label>
+                    </div>
+                    <div class="btn-checkbox">
+                      <label>
+                        <input class="visually-hidden" type="checkbox" name="specialisation" value="pilates">
+                        <span class="btn-checkbox__btn">Пилатес</span>
+                      </label>
+                    </div>
+                    <div class="btn-checkbox">
+                      <label>
+                        <input class="visually-hidden" type="checkbox" name="specialisation" value="stretching">
+                        <span class="btn-checkbox__btn">Стрейчинг</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="questionnaire-coach__block">
+                  <span class="questionnaire-coach__legend">Ваш уровень</span>
+                  <div class="custom-toggle-radio custom-toggle-radio--big questionnaire-coach__radio">
+                    <div class="custom-toggle-radio__block">
+                      <label>
+                        <input type="radio" name="level">
+                        <span class="custom-toggle-radio__icon"></span>
+                        <span class="custom-toggle-radio__label">Новичок</span>
+                      </label>
+                    </div>
+                    <div class="custom-toggle-radio__block">
+                      <label>
+                        <input type="radio" name="level" checked>
+                        <span class="custom-toggle-radio__icon"></span>
+                        <span class="custom-toggle-radio__label">Любитель</span>
+                      </label>
+                    </div>
+                    <div class="custom-toggle-radio__block">
+                      <label>
+                        <input type="radio" name="level">
+                        <span class="custom-toggle-radio__icon"></span>
+                        <span class="custom-toggle-radio__label">Профессионал</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="questionnaire-coach__block">
+                  <span class="questionnaire-coach__legend">Ваши дипломы и сертификаты</span>
+                  <div class="drag-and-drop questionnaire-coach__drag-and-drop">
+                    <label>
+                      <span class="drag-and-drop__label" tabindex="0">Загрузите сюда файлы формата PDF, JPG или PNG
+                        <svg width="20" height="20" aria-hidden="true">
+                          <use xlink:href="#icon-import"></use>
+                        </svg>
+                      </span>
+                      <input type="file" name="import" tabindex="-1" accept=".pdf, .jpg, .png">
+                    </label>
+                  </div>
+                </div>
+                <div class="questionnaire-coach__block">
+                  <span class="questionnaire-coach__legend">Расскажите о своём опыте, который мы сможем проверить</span>
+                  <div class="custom-textarea questionnaire-coach__textarea">
+                    <label>
+                      <textarea name="description" placeholder=" "></textarea>
+                    </label>
+                  </div>
+                  <div class="questionnaire-coach__checkbox">
+                    <label>
+                      <input type="checkbox" value="individual-training" name="individual-training" checked>
+                      <span class="questionnaire-coach__checkbox-icon">
+                        <svg width="9" height="6" aria-hidden="true">
+                          <use xlink:href="#arrow-check"></use>
+                        </svg>
+                      </span>
+                      <span class="questionnaire-coach__checkbox-label">Хочу дополнительно индивидуально тренировать</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <button
+                (click)="handleSubmitButtonClick($event)"
+                class="btn questionnaire-coach__button"
+                type="submit"
+              >
+                Продолжить
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
