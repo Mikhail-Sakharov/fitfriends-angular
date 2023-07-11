@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   AppRoute,
   CustomSelectClassName,
@@ -14,8 +14,14 @@ import {SignUpStateService} from 'src/app/services/sign-up-state.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
   public avatarUrl: string | null = null;
+  public userName: string | null = null;
+  public email: string | null = null;
+  public birthDate: string | null = null;
+  public password: string | null = null;
+  public gender: Gender | null = null;
+
   public isAvatarSelected = false;
   public isCustomSelectOpened = false;
   public genderList = Object.values(Gender);
@@ -40,14 +46,38 @@ export class SignUpComponent {
     private signUpStateService: SignUpStateService
   ) {}
 
+  public ngOnInit(): void {
+    const avatarUrl = this.signUpStateService.avatarUrl;
+    const location = this.signUpStateService.location;
+
+    if (avatarUrl) {
+      this.avatarUrl = avatarUrl;
+      this.isAvatarSelected = true;
+    }
+
+    if (location) {
+      this.selectedLocation = location;
+      this.locationSelectClasses[CustomSelectClassName.NotEmpty] = true;
+    }
+
+    this.userName = this.signUpStateService.userName;
+    this.email = this.signUpStateService.email;
+    this.birthDate = this.signUpStateService.birthDate;
+    this.gender = this.signUpStateService.gender;
+  }
+
   public handleFileInputChange(evt: Event) {
     const target = evt.currentTarget as HTMLInputElement;
     const files = target.files;
     const file = files !== null ? files[0] : null;
+    const avatarUrl = file ? URL.createObjectURL(file) : null;
 
-    this.signUpStateService.avatarFile = file;
-    this.avatarUrl = file ? URL.createObjectURL(file) : null;
-    this.isAvatarSelected = true;
+    if (file) {
+      this.signUpStateService.avatarFile = file;
+      this.signUpStateService.avatarUrl = avatarUrl;
+      this.avatarUrl = avatarUrl;
+      this.isAvatarSelected = true;
+    }
   }
 
   public handleUserNameInputChange(evt: Event) {

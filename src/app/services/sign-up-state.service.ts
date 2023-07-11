@@ -6,6 +6,7 @@ import {Gender, Location, UserRole} from '../app.constant';
 })
 export class SignUpStateService {
   public avatarFile: File | null = null;
+  public avatarUrl: string | null = null;
   public userName: string | null = null;
   public email: string | null = null;
   public birthDate: string | null = null;

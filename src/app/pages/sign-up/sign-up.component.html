@@ -49,7 +49,12 @@
                   <label>
                     <span class="custom-input__label">Имя</span>
                     <span class="custom-input__wrapper">
-                      <input (change)="handleUserNameInputChange($event)" type="text" name="name">
+                      <input
+                        [value]="userName"
+                        (change)="handleUserNameInputChange($event)"
+                        type="text"
+                        name="name"
+                      >
                     </span>
                   </label>
                 </div>
@@ -57,7 +62,12 @@
                   <label>
                     <span class="custom-input__label">E-mail</span>
                     <span class="custom-input__wrapper">
-                      <input (change)="handleEmailInputChange($event)" type="email" name="email">
+                      <input
+                        [value]="email"
+                        (change)="handleEmailInputChange($event)"
+                        type="email"
+                        name="email"
+                      >
                     </span>
                   </label>
                 </div>
@@ -65,7 +75,13 @@
                   <label>
                     <span class="custom-input__label">Дата рождения</span>
                     <span class="custom-input__wrapper">
-                      <input (change)="handleBirthDateInputChange($event)" type="date" name="birthday" max="2099-12-31">
+                      <input
+                        [value]="birthDate"
+                        (change)="handleBirthDateInputChange($event)"
+                        type="date"
+                        name="birthday"
+                        max="2099-12-31"
+                      >
                     </span>
                   </label>
                 </div>
@@ -114,17 +130,18 @@
                   <span class="sign-up__label">Пол</span>
                   <div class="custom-toggle-radio custom-toggle-radio--big">
                     <div
-                      *ngFor="let gender of genderList"
+                      *ngFor="let genderOption of genderList"
                       class="custom-toggle-radio__block"
                     >
                       <label>
                         <input
-                          (change)="handleGenderInputChange(gender)"
+                          [checked]="gender === genderOption"
+                          (change)="handleGenderInputChange(genderOption)"
                           type="radio" name="sex"
                         >
                         <span class="custom-toggle-radio__icon"></span>
                         <span class="custom-toggle-radio__label">
-                          {{gender}}
+                          {{genderOption}}
                         </span>
                       </label>
                     </div>
