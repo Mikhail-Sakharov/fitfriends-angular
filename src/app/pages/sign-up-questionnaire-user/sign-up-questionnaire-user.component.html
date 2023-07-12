@@ -59,25 +59,19 @@
                 <div class="questionnaire-user__block">
                   <span class="questionnaire-user__legend">Ваш уровень</span>
                   <div class="custom-toggle-radio custom-toggle-radio--big questionnaire-user__radio">
-                    <div class="custom-toggle-radio__block">
+                    <div
+                      *ngFor="let trainingLevel of trainingLevels"
+                      class="custom-toggle-radio__block"
+                    >
                       <label>
-                        <input type="radio" name="level">
+                        <input
+                          (change)="handleTrainingLevelInputChange(trainingLevel)"
+                          type="radio" name="level"
+                        >
                         <span class="custom-toggle-radio__icon"></span>
-                        <span class="custom-toggle-radio__label">Новичок</span>
-                      </label>
-                    </div>
-                    <div class="custom-toggle-radio__block">
-                      <label>
-                        <input type="radio" name="level" checked>
-                        <span class="custom-toggle-radio__icon"></span>
-                        <span class="custom-toggle-radio__label">Любитель</span>
-                      </label>
-                    </div>
-                    <div class="custom-toggle-radio__block">
-                      <label>
-                        <input type="radio" name="level">
-                        <span class="custom-toggle-radio__icon"></span>
-                        <span class="custom-toggle-radio__label">Профессионал</span>
+                        <span class="custom-toggle-radio__label">
+                          {{trainingLevel}}
+                        </span>
                       </label>
                     </div>
                   </div>

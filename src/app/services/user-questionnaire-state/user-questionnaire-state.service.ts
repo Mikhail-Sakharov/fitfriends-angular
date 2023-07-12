@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Duration, TrainingType} from 'src/app/app.constant';
+import {Duration, TrainingLevel, TrainingType} from 'src/app/app.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -7,4 +7,5 @@ import {Duration, TrainingType} from 'src/app/app.constant';
 export class UserQuestionnaireStateService {
   public selectedTrainigTypes: TrainingType[] = [];
   public selectedDurationOption: Duration | null = null;
+  public selectedTrainingLevel: TrainingLevel | null = null;
 }

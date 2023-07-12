@@ -44,6 +44,12 @@ export enum Duration {
   LongerThanEighty = 'больше 80 мин'
 }
 
+export enum TrainingLevel {
+  Newbie = 'новичок',
+  Amateur = 'любитель',
+  Pro = 'профессионал'
+}
+
 export enum CustomSelectClassName {
   Opened = 'is-open',
   NotEmpty = 'not-empty'
