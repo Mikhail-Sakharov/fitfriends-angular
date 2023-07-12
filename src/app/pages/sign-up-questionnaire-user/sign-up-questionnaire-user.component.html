@@ -119,7 +119,12 @@
                   </div>
                 </div>
               </div>
-              <button class="btn questionnaire-user__button" type="submit">Продолжить</button>
+              <button
+                (click)="handleSubmitButtonClick($event)"
+                class="btn questionnaire-user__button" type="submit"
+              >
+                Продолжить
+              </button>
             </div>
           </form>
         </div>

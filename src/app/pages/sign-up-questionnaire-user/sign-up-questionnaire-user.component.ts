@@ -24,4 +24,9 @@ export class SignUpQuestionnaireUserComponent {
       this.userQuestionnaireStateService.selectedTrainigTypes = [...this.userQuestionnaireStateService.selectedTrainigTypes, trainingType];
     }
   }
+
+  public handleSubmitButtonClick(evt: Event) {
+    evt.preventDefault();
+    console.log(this.userQuestionnaireStateService.selectedTrainigTypes);
+  };
 }
