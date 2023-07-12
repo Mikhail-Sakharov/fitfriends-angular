@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TrainingType} from 'src/app/app.constant';
+import {Duration, TrainingType} from 'src/app/app.constant';
 import {UserQuestionnaireStateService} from 'src/app/services/user-questionnaire-state/user-questionnaire-state.service';
 
 @Component({
@@ -10,6 +10,9 @@ import {UserQuestionnaireStateService} from 'src/app/services/user-questionnaire
 export class SignUpQuestionnaireUserComponent {
   public trainingTypes = Object.values(TrainingType);
   public selectedTrainigTypes: TrainingType[] = [];
+
+  public durationOptions = Object.values(Duration);
+  public selectedDurationOption: Duration | null = null;
 
   constructor(
     private userQuestionnaireStateService: UserQuestionnaireStateService
@@ -25,8 +28,14 @@ export class SignUpQuestionnaireUserComponent {
     }
   }
 
+  public handleDurationInputChange(durationOption: Duration) {
+    this.selectedDurationOption = durationOption;
+    this.userQuestionnaireStateService.selectedDurationOption = durationOption;
+  }
+
   public handleSubmitButtonClick(evt: Event) {
     evt.preventDefault();
     console.log(this.userQuestionnaireStateService.selectedTrainigTypes);
+    console.log(this.userQuestionnaireStateService.selectedDurationOption);
   };
 }

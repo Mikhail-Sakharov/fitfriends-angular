@@ -38,32 +38,20 @@
                 <div class="questionnaire-user__block">
                   <span class="questionnaire-user__legend">Сколько времени вы готовы уделять на тренировку в день</span>
                   <div class="custom-toggle-radio custom-toggle-radio--big questionnaire-user__radio">
-                    <div class="custom-toggle-radio__block">
+                    <div
+                      *ngFor="let option of durationOptions"
+                      class="custom-toggle-radio__block"
+                    >
                       <label>
-                        <input type="radio" name="time">
+                        <input
+                          [checked]="selectedDurationOption === option"
+                          (change)="handleDurationInputChange(option)"
+                          type="radio" name="time"
+                        >
                         <span class="custom-toggle-radio__icon"></span>
-                        <span class="custom-toggle-radio__label">10-30 мин</span>
-                      </label>
-                    </div>
-                    <div class="custom-toggle-radio__block">
-                      <label>
-                        <input type="radio" name="time" checked>
-                        <span class="custom-toggle-radio__icon"></span>
-                        <span class="custom-toggle-radio__label">30-50 мин</span>
-                      </label>
-                    </div>
-                    <div class="custom-toggle-radio__block">
-                      <label>
-                        <input type="radio" name="time">
-                        <span class="custom-toggle-radio__icon"></span>
-                        <span class="custom-toggle-radio__label">50-80 мин</span>
-                      </label>
-                    </div>
-                    <div class="custom-toggle-radio__block">
-                      <label>
-                        <input type="radio" name="time">
-                        <span class="custom-toggle-radio__icon"></span>
-                        <span class="custom-toggle-radio__label">больше 80 мин</span>
+                        <span class="custom-toggle-radio__label">
+                          {{option}}
+                        </span>
                       </label>
                     </div>
                   </div>
