@@ -18,52 +18,19 @@
                 <div class="questionnaire-user__block">
                   <span class="questionnaire-user__legend">Ваша специализация (тип) тренировок</span>
                   <div class="specialization-checkbox questionnaire-user__specializations">
-                    <div class="btn-checkbox">
+                    <div
+                      *ngFor="let trainingType of trainingTypes"
+                      class="btn-checkbox"
+                    >
                       <label>
-                        <input class="visually-hidden" type="checkbox" name="specialisation" value="yoga">
-                        <span class="btn-checkbox__btn">Йога</span>
-                      </label>
-                    </div>
-                    <div class="btn-checkbox">
-                      <label>
-                        <input class="visually-hidden" type="checkbox" name="specialisation" value="running">
-                        <span class="btn-checkbox__btn">Бег</span>
-                      </label>
-                    </div>
-                    <div class="btn-checkbox">
-                      <label>
-                        <input class="visually-hidden" type="checkbox" name="specialisation" value="power" checked="checked">
-                        <span class="btn-checkbox__btn">Силовые</span>
-                      </label>
-                    </div>
-                    <div class="btn-checkbox">
-                      <label>
-                        <input class="visually-hidden" type="checkbox" name="specialisation" value="aerobics">
-                        <span class="btn-checkbox__btn">Аэробика</span>
-                      </label>
-                    </div>
-                    <div class="btn-checkbox">
-                      <label>
-                        <input class="visually-hidden" type="checkbox" name="specialisation" value="crossfit" checked="checked">
-                        <span class="btn-checkbox__btn">Кроссфит</span>
-                      </label>
-                    </div>
-                    <div class="btn-checkbox">
-                      <label>
-                        <input class="visually-hidden" type="checkbox" name="specialisation" value="boxing" checked="checked">
-                        <span class="btn-checkbox__btn">Бокс</span>
-                      </label>
-                    </div>
-                    <div class="btn-checkbox">
-                      <label>
-                        <input class="visually-hidden" type="checkbox" name="specialisation" value="pilates">
-                        <span class="btn-checkbox__btn">Пилатес</span>
-                      </label>
-                    </div>
-                    <div class="btn-checkbox">
-                      <label>
-                        <input class="visually-hidden" type="checkbox" name="specialisation" value="stretching">
-                        <span class="btn-checkbox__btn">Стрейчинг</span>
+                        <input
+                          [checked]="selectedTrainigTypes.includes(trainingType)"
+                          (change)="handleTrainingTypeInputChange(trainingType)"
+                          class="visually-hidden" type="checkbox" name="specialisation" [value]="trainingType"
+                        >
+                        <span class="btn-checkbox__btn">
+                          {{trainingType}}
+                        </span>
                       </label>
                     </div>
                   </div>

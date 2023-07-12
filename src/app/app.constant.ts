@@ -26,6 +26,17 @@ export enum Gender {
   Undefined = 'неважно'
 }
 
+export enum TrainingType {
+  Yoga = 'йога',
+  Running = 'бег',
+  Boxing = 'бокс',
+  Stratching = 'стрейчинг',
+  Crossfit = 'кроссфит',
+  Aerobics = 'аэробика',
+  Pilates = 'пилатес',
+  PowerLifting = 'силовые'
+}
+
 export enum CustomSelectClassName {
   Opened = 'is-open',
   NotEmpty = 'not-empty'
