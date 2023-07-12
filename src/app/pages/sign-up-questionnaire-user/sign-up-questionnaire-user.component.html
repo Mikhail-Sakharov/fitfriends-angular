@@ -65,6 +65,7 @@
                     >
                       <label>
                         <input
+                          [checked]="selectedTrainingLevel === trainingLevel"
                           (change)="handleTrainingLevelInputChange(trainingLevel)"
                           type="radio" name="level"
                         >

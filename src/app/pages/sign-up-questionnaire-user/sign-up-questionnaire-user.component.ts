@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Duration, TrainingLevel, TrainingType} from 'src/app/app.constant';
+import {SignUpStateService} from 'src/app/services/sign-up-state.service';
 import {UserQuestionnaireStateService} from 'src/app/services/user-questionnaire-state/user-questionnaire-state.service';
 
 @Component({
@@ -7,7 +8,7 @@ import {UserQuestionnaireStateService} from 'src/app/services/user-questionnaire
   templateUrl: './sign-up-questionnaire-user.component.html',
   styleUrls: ['./sign-up-questionnaire-user.component.css']
 })
-export class SignUpQuestionnaireUserComponent {
+export class SignUpQuestionnaireUserComponent implements OnInit {
   public trainingTypes = Object.values(TrainingType);
   public selectedTrainigTypes: TrainingType[] = [];
 
@@ -18,8 +19,15 @@ export class SignUpQuestionnaireUserComponent {
   public selectedTrainingLevel: TrainingLevel | null = null;
 
   constructor(
-    private userQuestionnaireStateService: UserQuestionnaireStateService
+    private userQuestionnaireStateService: UserQuestionnaireStateService,
+    private signUpStateService: SignUpStateService
   ) {}
+
+  public ngOnInit(): void {
+    this.selectedTrainigTypes = this.userQuestionnaireStateService.selectedTrainigTypes;
+    this.selectedDurationOption = this.userQuestionnaireStateService.selectedDurationOption;
+    this.selectedTrainingLevel = this.userQuestionnaireStateService.selectedTrainingLevel;
+  }
 
   public handleTrainingTypeInputChange(trainingType: TrainingType) {
     if (this.selectedTrainigTypes.includes(trainingType)) {
@@ -43,6 +51,14 @@ export class SignUpQuestionnaireUserComponent {
 
   public handleSubmitButtonClick(evt: Event) {
     evt.preventDefault();
+    console.log(this.signUpStateService.avatarFile);
+    console.log(this.signUpStateService.userName);
+    console.log(this.signUpStateService.email);
+    console.log(this.signUpStateService.birthDate);
+    console.log(this.signUpStateService.location);
+    console.log(this.signUpStateService.password);
+    console.log(this.signUpStateService.gender);
+    console.log(this.signUpStateService.userRole);
     console.log(this.userQuestionnaireStateService.selectedTrainigTypes);
     console.log(this.userQuestionnaireStateService.selectedDurationOption);
     console.log(this.userQuestionnaireStateService.selectedTrainingLevel);
