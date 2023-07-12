@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Duration, TrainingLevel, TrainingType} from 'src/app/app.constant';
 import {SignUpStateService} from 'src/app/services/sign-up-state.service';
 import {UserQuestionnaireStateService} from 'src/app/services/user-questionnaire-state/user-questionnaire-state.service';
+import {UserRegistrationService} from 'src/app/services/user-registration/user-registration.service';
 
 @Component({
   selector: 'app-sign-up-questionnaire-user',
@@ -23,7 +24,8 @@ export class SignUpQuestionnaireUserComponent implements OnInit {
 
   constructor(
     private userQuestionnaireStateService: UserQuestionnaireStateService,
-    private signUpStateService: SignUpStateService
+    private signUpStateService: SignUpStateService,
+    private userRegistrationService: UserRegistrationService
   ) {}
 
   public ngOnInit(): void {
@@ -72,18 +74,37 @@ export class SignUpQuestionnaireUserComponent implements OnInit {
 
   public handleSubmitButtonClick(evt: Event) {
     evt.preventDefault();
-    console.log(this.signUpStateService.avatarFile);
-    console.log(this.signUpStateService.userName);
-    console.log(this.signUpStateService.email);
-    console.log(this.signUpStateService.birthDate);
-    console.log(this.signUpStateService.location);
-    console.log(this.signUpStateService.password);
-    console.log(this.signUpStateService.gender);
-    console.log(this.signUpStateService.userRole);
-    console.log(this.userQuestionnaireStateService.selectedTrainigTypes);
-    console.log(this.userQuestionnaireStateService.selectedDurationOption);
-    console.log(this.userQuestionnaireStateService.selectedTrainingLevel);
-    console.log(this.userQuestionnaireStateService.totalCaloriesCount);
-    console.log(this.userQuestionnaireStateService.dailyCaloriesCount);
+    if (
+      // TODO добавить сервис валидации
+      this.signUpStateService.userName &&
+      this.signUpStateService.email &&
+      this.signUpStateService.password &&
+      this.signUpStateService.gender &&
+      this.signUpStateService.birthDate &&
+      this.signUpStateService.userRole &&
+      this.signUpStateService.location &&
+      this.userQuestionnaireStateService.selectedTrainingLevel &&
+      this.userQuestionnaireStateService.selectedDurationOption &&
+      this.userQuestionnaireStateService.dailyCaloriesCount &&
+      this.userQuestionnaireStateService.totalCaloriesCount
+    ) {
+      this.userRegistrationService.registerUser({
+        userName: this.signUpStateService.userName,
+        email: this.signUpStateService.email,
+        password: this.signUpStateService.password,
+        gender: this.signUpStateService.gender,
+        birthday: this.signUpStateService.birthDate,
+        userRole: this.signUpStateService.userRole,
+        location: this.signUpStateService.location,
+        trainingLevel: this.userQuestionnaireStateService.selectedTrainingLevel,
+        trainingTypes: this.userQuestionnaireStateService.selectedTrainigTypes,
+        questionnaire: {
+          trainingDuration: this.userQuestionnaireStateService.selectedDurationOption,
+          dailyCaloriesCount: Number(this.userQuestionnaireStateService.dailyCaloriesCount),
+          totalCaloriesCount: Number(this.userQuestionnaireStateService.totalCaloriesCount),
+          isReadyToGetTrained: true
+        }
+      }).subscribe();
+    }
   };
 }

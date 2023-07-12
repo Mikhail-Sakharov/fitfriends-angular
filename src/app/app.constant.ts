@@ -7,6 +7,12 @@ export enum AppRoute {
   NotFound = '**'
 }
 
+export const USER_SERVICE_URL = 'http://localhost:5678';
+
+export enum ApiRoute {
+  RegisterUser = '/auth/register'
+}
+
 export enum Location {
   Pionerskaya = 'Пионерская',
   Petrogradskaya = 'Петроградская',
