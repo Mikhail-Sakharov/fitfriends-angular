@@ -83,7 +83,11 @@
                     <div class="custom-input custom-input--with-text-right questionnaire-user__input">
                       <label>
                         <span class="custom-input__wrapper">
-                          <input type="number" name="calories-lose">
+                          <input
+                            [value]="totalCaloriesCount"
+                            (change)="handleTotalCaloriesCountInputChange($event)"
+                            type="number" name="calories-lose"
+                          >
                           <span class="custom-input__text">ккал</span>
                         </span>
                       </label>
@@ -94,7 +98,11 @@
                     <div class="custom-input custom-input--with-text-right questionnaire-user__input">
                       <label>
                         <span class="custom-input__wrapper">
-                          <input type="number" name="calories-waste">
+                          <input
+                            [value]="dailyCaloriesCount"
+                            (change)="handleDailyCaloriesCountInputChange($event)"
+                            type="number" name="calories-waste"
+                          >
                           <span class="custom-input__text">ккал</span>
                         </span>
                       </label>

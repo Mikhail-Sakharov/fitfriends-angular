@@ -18,6 +18,9 @@ export class SignUpQuestionnaireUserComponent implements OnInit {
   public trainingLevels = Object.values(TrainingLevel);
   public selectedTrainingLevel: TrainingLevel | null = null;
 
+  public totalCaloriesCount = '';
+  public dailyCaloriesCount = '';
+
   constructor(
     private userQuestionnaireStateService: UserQuestionnaireStateService,
     private signUpStateService: SignUpStateService
@@ -27,6 +30,8 @@ export class SignUpQuestionnaireUserComponent implements OnInit {
     this.selectedTrainigTypes = this.userQuestionnaireStateService.selectedTrainigTypes;
     this.selectedDurationOption = this.userQuestionnaireStateService.selectedDurationOption;
     this.selectedTrainingLevel = this.userQuestionnaireStateService.selectedTrainingLevel;
+    this.totalCaloriesCount = this.userQuestionnaireStateService.totalCaloriesCount;
+    this.dailyCaloriesCount = this.userQuestionnaireStateService.dailyCaloriesCount;
   }
 
   public handleTrainingTypeInputChange(trainingType: TrainingType) {
@@ -49,6 +54,22 @@ export class SignUpQuestionnaireUserComponent implements OnInit {
     this.userQuestionnaireStateService.selectedTrainingLevel = trainingLevel;
   }
 
+  public handleTotalCaloriesCountInputChange(evt: Event) {
+    const target = evt.currentTarget as HTMLInputElement;
+    const value = target.value;
+
+    this.totalCaloriesCount = value;
+    this.userQuestionnaireStateService.totalCaloriesCount = value;
+  }
+
+  public handleDailyCaloriesCountInputChange(evt: Event) {
+    const target = evt.currentTarget as HTMLInputElement;
+    const value = target.value;
+
+    this.dailyCaloriesCount = value;
+    this.userQuestionnaireStateService.dailyCaloriesCount = value;
+  }
+
   public handleSubmitButtonClick(evt: Event) {
     evt.preventDefault();
     console.log(this.signUpStateService.avatarFile);
@@ -62,5 +83,7 @@ export class SignUpQuestionnaireUserComponent implements OnInit {
     console.log(this.userQuestionnaireStateService.selectedTrainigTypes);
     console.log(this.userQuestionnaireStateService.selectedDurationOption);
     console.log(this.userQuestionnaireStateService.selectedTrainingLevel);
+    console.log(this.userQuestionnaireStateService.totalCaloriesCount);
+    console.log(this.userQuestionnaireStateService.dailyCaloriesCount);
   };
 }

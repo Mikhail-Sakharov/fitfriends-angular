@@ -8,4 +8,6 @@ export class UserQuestionnaireStateService {
   public selectedTrainigTypes: TrainingType[] = [];
   public selectedDurationOption: Duration | null = null;
   public selectedTrainingLevel: TrainingLevel | null = null;
+  public totalCaloriesCount = '';
+  public dailyCaloriesCount = '';
 }
