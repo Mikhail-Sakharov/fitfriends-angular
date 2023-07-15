@@ -18,12 +18,17 @@
             <div class="sign-up">
               <div class="sign-up__load-photo">
                 <div class="input-load-avatar">
-                  <div
+                  <label
                     *ngIf="isAvatarSelected; else avatarFileInput"
                     class="input-load-avatar__avatar"
                   >
+                    <input
+                      (change)="handleFileInputChange($event)"
+                      class="visually-hidden" type="file"
+                      accept="image/png, image/jpeg"
+                    >
                     <img [src]="avatarUrl" alt="user avatar">
-                  </div>
+                  </label>
                   <ng-template #avatarFileInput>
                     <label>
                       <input
