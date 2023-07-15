@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TrainingLevel, TrainingType} from 'src/app/app.constant';
 import {CoachQuestionnaireStateService} from 'src/app/services/coach-questionnaire-state/coach-questionnaire-state.service';
 import {SignUpStateService} from 'src/app/services/sign-up-state.service';
+import {UserRegistrationService} from 'src/app/services/user-registration/user-registration.service';
 
 @Component({
   selector: 'app-sign-up-questionnaire-coach',
@@ -23,7 +24,8 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
 
   constructor(
     private signUpStateService: SignUpStateService,
-    private coachQuestionnaireStateService: CoachQuestionnaireStateService
+    private coachQuestionnaireStateService: CoachQuestionnaireStateService,
+    private userRegistrationService: UserRegistrationService
   ) {}
 
   public ngOnInit(): void {
@@ -74,7 +76,38 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
 
   public handleSubmitButtonClick(evt: Event) {
     evt.preventDefault();
-    console.log(this.signUpStateService.avatarFile);
+    if (
+      // TODO добавить сервис валидации
+      this.signUpStateService.userName &&
+      this.signUpStateService.email &&
+      this.signUpStateService.password &&
+      this.signUpStateService.gender &&
+      this.signUpStateService.birthDate &&
+      this.signUpStateService.userRole &&
+      this.signUpStateService.location &&
+      this.coachQuestionnaireStateService.selectedTrainingLevel &&
+      this.coachQuestionnaireStateService.selectedTrainigTypes &&
+      this.coachQuestionnaireStateService.description
+    ) {
+      this.userRegistrationService.registerUser({
+        userName: this.signUpStateService.userName,
+        email: this.signUpStateService.email,
+        password: this.signUpStateService.password,
+        gender: this.signUpStateService.gender,
+        birthday: this.signUpStateService.birthDate,
+        userRole: this.signUpStateService.userRole,
+        location: this.signUpStateService.location,
+        trainingLevel: this.coachQuestionnaireStateService.selectedTrainingLevel,
+        trainingTypes: this.coachQuestionnaireStateService.selectedTrainigTypes,
+        questionnaire: {
+          certificates: [],
+          description: this.coachQuestionnaireStateService.description,
+          isReadyToTrain: this.coachQuestionnaireStateService.isReadyToTrain
+        }
+      }).subscribe();
+    }
+
+    /* console.log(this.signUpStateService.avatarFile);
     console.log(this.signUpStateService.userName);
     console.log(this.signUpStateService.email);
     console.log(this.signUpStateService.birthDate);
@@ -87,6 +120,30 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
     console.log(this.coachQuestionnaireStateService.selectedTrainingLevel);
     console.log(this.coachQuestionnaireStateService.selectedCertificateFiles);
     console.log(this.coachQuestionnaireStateService.description);
-    console.log(this.coachQuestionnaireStateService.isReadyToTrain);
+    console.log(this.coachQuestionnaireStateService.isReadyToTrain); */
+
+    /* if (avatar) {
+      const file = fetch(avatar)
+        .then((r) => r.blob())
+        .then((blobFile) => new File([blobFile], 'avatar', {type: 'image/png'}));
+
+      const avatarFile = await file;
+      const avatarFileName = avatarFile.name;
+      const avatarType = avatarFile.type.match(/(?<=\/).+/);
+
+      const formData = new FormData();
+      formData.append('avatar', avatarFile, `${avatarFileName}.${avatarType ? avatarType[0] : ''}`);
+      dispatch(uploadAvatarAction(formData));
+      URL.revokeObjectURL(avatar);
+    }
+
+    if (certificate) {
+      const certificateName = certificate.name;
+      const certificateFileType = certificate.type.match(/(?<=\/).+/);
+
+      const formData = new FormData();
+      formData.append('certificate', certificate, `${certificateName}.${certificateFileType ? certificateFileType[0] : ''}`);
+      dispatch(uploadCertificateAction(formData));
+    } */
   }
 }
