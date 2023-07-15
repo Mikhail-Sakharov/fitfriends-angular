@@ -15,6 +15,8 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
   public trainingLevels = Object.values(TrainingLevel);
   public selectedTrainingLevel: TrainingLevel | null = null;
 
+  public selectedCertificateFiles: File[] = [];
+
   constructor(
     private signUpStateService: SignUpStateService,
     private coachQuestionnaireStateService: CoachQuestionnaireStateService
@@ -40,6 +42,17 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
     this.coachQuestionnaireStateService.selectedTrainingLevel = trainingLevel;
   }
 
+  public handleCertificateFileInputChange(evt: Event) {
+    const target = evt.currentTarget as HTMLInputElement;
+    const files = target.files;
+    const file = files ? files[0] : null;
+
+    if (file) {
+      this.selectedCertificateFiles = [...this.selectedCertificateFiles, file];
+      this.coachQuestionnaireStateService.selectedCertificateFiles = [...this.coachQuestionnaireStateService.selectedCertificateFiles, file];
+    }
+  }
+
   public handleSubmitButtonClick(evt: Event) {
     evt.preventDefault();
     console.log(this.signUpStateService.avatarFile);
@@ -51,7 +64,8 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
     console.log(this.signUpStateService.gender);
     console.log(this.signUpStateService.userRole);
 
-    console.log(this.selectedTrainigTypes);
-    console.log(this.selectedTrainingLevel);
+    console.log(this.coachQuestionnaireStateService.selectedTrainigTypes);
+    console.log(this.coachQuestionnaireStateService.selectedTrainingLevel);
+    console.log(this.coachQuestionnaireStateService.selectedCertificateFiles);
   }
 }

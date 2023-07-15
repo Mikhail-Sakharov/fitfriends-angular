@@ -65,7 +65,10 @@
                           <use xlink:href="#icon-import"></use>
                         </svg>
                       </span>
-                      <input type="file" name="import" tabindex="-1" accept=".pdf, .jpg, .png">
+                      <input
+                        (change)="handleCertificateFileInputChange($event)"
+                        type="file" name="import" tabindex="-1" accept=".pdf, .jpg, .png"
+                      >
                     </label>
                   </div>
                 </div>

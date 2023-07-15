@@ -7,7 +7,7 @@ import {TrainingLevel, TrainingType} from 'src/app/app.constant';
 export class CoachQuestionnaireStateService {
   public selectedTrainigTypes: TrainingType[] = [];
   public selectedTrainingLevel: TrainingLevel | null = null;
-  public certificates: File[] | null = null;
+  public selectedCertificateFiles: File[] = [];
   public description = '';
   public isReadyToTrain = false;
 }
