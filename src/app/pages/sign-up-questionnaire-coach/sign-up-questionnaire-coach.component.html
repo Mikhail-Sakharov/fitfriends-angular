@@ -76,7 +76,11 @@
                   <span class="questionnaire-coach__legend">Расскажите о своём опыте, который мы сможем проверить</span>
                   <div class="custom-textarea questionnaire-coach__textarea">
                     <label>
-                      <textarea name="description" placeholder=" "></textarea>
+                      <textarea
+                        (change)="handleDescriptionTextAreaChange($event)"
+                        name="description" placeholder=""
+                        [value]="description"
+                      ></textarea>
                     </label>
                   </div>
                   <div class="questionnaire-coach__checkbox">

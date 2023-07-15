@@ -17,6 +17,8 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
 
   public selectedCertificateFiles: File[] = [];
 
+  public description = '';
+
   constructor(
     private signUpStateService: SignUpStateService,
     private coachQuestionnaireStateService: CoachQuestionnaireStateService
@@ -25,6 +27,7 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
   public ngOnInit(): void {
     this.selectedTrainigTypes = this.coachQuestionnaireStateService.selectedTrainigTypes;
     this.selectedTrainingLevel = this.coachQuestionnaireStateService.selectedTrainingLevel;
+    this.description = this.coachQuestionnaireStateService.description;
   }
 
   public handleTrainingTypeInputChange(trainingType: TrainingType) {
@@ -53,6 +56,14 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
     }
   }
 
+  public handleDescriptionTextAreaChange(evt: Event) {
+    const target = evt.currentTarget as HTMLTextAreaElement;
+    const description = target.value;
+
+    this.description = description;
+    this.coachQuestionnaireStateService.description = description;
+  }
+
   public handleSubmitButtonClick(evt: Event) {
     evt.preventDefault();
     console.log(this.signUpStateService.avatarFile);
@@ -67,5 +78,6 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
     console.log(this.coachQuestionnaireStateService.selectedTrainigTypes);
     console.log(this.coachQuestionnaireStateService.selectedTrainingLevel);
     console.log(this.coachQuestionnaireStateService.selectedCertificateFiles);
+    console.log(this.coachQuestionnaireStateService.description);
   }
 }
