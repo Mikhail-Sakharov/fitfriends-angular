@@ -85,7 +85,11 @@
                   </div>
                   <div class="questionnaire-coach__checkbox">
                     <label>
-                      <input type="checkbox" value="individual-training" name="individual-training" checked>
+                      <input
+                        [checked]="isReadyToTrain"
+                        (change)="handleReadyToTrainInputChange()"
+                        type="checkbox" value="individual-training" name="individual-training"
+                      >
                       <span class="questionnaire-coach__checkbox-icon">
                         <svg width="9" height="6" aria-hidden="true">
                           <use xlink:href="#arrow-check"></use>
