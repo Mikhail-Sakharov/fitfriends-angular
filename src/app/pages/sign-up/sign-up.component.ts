@@ -105,7 +105,7 @@ export class SignUpComponent implements OnInit {
     const target = evt.currentTarget as HTMLInputElement;
     const password = target.value;
 
-    this.signUpStateService.password = password;
+    this.password = password;
   }
 
   public handleGenderInputChange(gender: Gender) {
