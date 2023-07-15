@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TrainingType} from 'src/app/app.constant';
+import {TrainingLevel, TrainingType} from 'src/app/app.constant';
 import {CoachQuestionnaireStateService} from 'src/app/services/coach-questionnaire-state/coach-questionnaire-state.service';
 import {SignUpStateService} from 'src/app/services/sign-up-state.service';
 
@@ -12,6 +12,9 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
   public trainingTypes = Object.values(TrainingType);
   public selectedTrainigTypes: TrainingType[] = [];
 
+  public trainingLevels = Object.values(TrainingLevel);
+  public selectedTrainingLevel: TrainingLevel | null = null;
+
   constructor(
     private signUpStateService: SignUpStateService,
     private coachQuestionnaireStateService: CoachQuestionnaireStateService
@@ -19,6 +22,7 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
 
   public ngOnInit(): void {
     this.selectedTrainigTypes = this.coachQuestionnaireStateService.selectedTrainigTypes;
+    this.selectedTrainingLevel = this.coachQuestionnaireStateService.selectedTrainingLevel;
   }
 
   public handleTrainingTypeInputChange(trainingType: TrainingType) {
@@ -29,6 +33,11 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
       this.selectedTrainigTypes = [...this.selectedTrainigTypes, trainingType];
       this.coachQuestionnaireStateService.selectedTrainigTypes = [...this.coachQuestionnaireStateService.selectedTrainigTypes, trainingType];
     }
+  }
+
+  public handleTrainingLevelInputChange(trainingLevel: TrainingLevel) {
+    this.selectedTrainingLevel = trainingLevel;
+    this.coachQuestionnaireStateService.selectedTrainingLevel = trainingLevel;
   }
 
   public handleSubmitButtonClick(evt: Event) {
@@ -43,5 +52,6 @@ export class SignUpQuestionnaireCoachComponent implements OnInit {
     console.log(this.signUpStateService.userRole);
 
     console.log(this.selectedTrainigTypes);
+    console.log(this.selectedTrainingLevel);
   }
 }
